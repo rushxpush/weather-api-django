@@ -1,0 +1,50 @@
+# Python virtual environment
+venv/
+
+# Django secret keys and settings (add your custom settings files if needed)
+*.env
+
+# Byte-compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Logs
+*.log
+
+# Database (if you're using SQLite during development)
+db.sqlite3
+
+# Django migrations
+*.pyc
+*/migrations/*
+
+# IDE-specific files (adjust for your IDE/editor)
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node modules (if using JavaScript or React within the project)
+node_modules/
+
+# Static and media files (if not tracking them in version control)
+staticfiles/
+media/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Test output
+*.pytest_cache/
+*.coverage.*
+
+# Docker-related files (if applicable)
+*.env.docker
+*.env.example
+*.env.production
+docker-compose.override.yml
