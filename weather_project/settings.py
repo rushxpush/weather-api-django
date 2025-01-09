@@ -11,6 +11,26 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+# Set env paths
+env = environ.Env(
+#   set casting, default value
+    DEBUG=(bool, False)
+)
+
+# set project base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Postgres database login info
+POSTGRES_USERNAME = env("POSTGRES_USERNAME")
+POSTGRES_PASSWORD = env("POSTGRES_PASSWORD")
+POSTGRES_PORT = env("POSTGRES_PORT")
+POSTGRES_HOST = env("POSTGRES_HOST")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,9 +94,17 @@ WSGI_APPLICATION = "weather_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+      'ENGINE': 'django.db.backends.postgresql',
+      'NAME': 'weather_db',
+      'USER': POSTGRES_USERNAME, 
+      'PASSWORD': POSTGRES_PASSWORD,
+      'HOST': POSTGRES_HOST,
+      'PORT': POSTGRES_PORT 
     }
 }
 
